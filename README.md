@@ -1,5 +1,4 @@
 
-
 # To-Do List Manager CLI App
 
 This is a simple CLI app to manage your to-do list.
