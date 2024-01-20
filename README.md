@@ -13,3 +13,10 @@ This is a simple CLI app to manage your to-do list.
    - Exit: Quit the app.
 
 Enjoy managing your tasks with this simple CLI app!
+
+
+## testing
+run: ruby tests/task_test.rb
+ruby tests/todo_list_test.rb
+
+good luck
