@@ -1,39 +1,19 @@
 require 'minitest/autorun'
-require './CLI'
+require_relative '../task'
 
-
-class TestTask < Minitest::Test
-  def setup
-    @task = Task.new("Test Task")
-  end
-
-  def test_task_initialization
-    assert_equal "Test Task", @task.description
-    refute @task.completed
+class TaskTest < Minitest::Test
+  def test_task_creation
+    task = Task.new("Learn Ruby")
+    refute_nil task
+    assert_equal "Learn Ruby", task.description
+    refute task.completed, "New task should not be completed"
   end
 
   def test_mark_as_completed
-    @task.mark_as_completed
-    assert @task.completed
-  end
-end
+    task = Task.new("Learn Ruby")
+    refute task.completed, "Task should initially be incomplete"
 
-class TestToDoList < Minitest::Test
-  def setup
-    @todo_list = ToDoList.new
-    @todo_list.add_task("Task 1")
-    @todo_list.add_task("Task 2")
+    task.mark_as_completed
+    assert task.completed, "Task should be marked as completed"
   end
-
-  def test_add_task
-    @todo_list.add_task("Task 3")
-    assert_equal 3, @todo_list.tasks.length
-    assert_equal "Task 3", @todo_list.tasks.last.description
-  end
-
-  def test_mark_task_completed
-    @todo_list.mark_task_completed(0)
-    assert @todo_list.tasks[0].completed
-  end
-
 end

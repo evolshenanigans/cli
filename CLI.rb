@@ -1,40 +1,6 @@
-class Task
-  attr_accessor :description, :completed
+require_relative 'task'
+require_relative 'todo_list'
 
-  def initialize(description)
-    @description = description
-    @completed = false
-  end
-
-  def mark_as_completed
-    @completed = true
-  end
-end
-
-class ToDoList
-  attr_reader :tasks
-
-  def initialize
-    @tasks = []
-  end
-
-  def add_task(description)
-    task = Task.new(description)
-    @tasks << task
-  end
-
-  def list_tasks
-    @tasks.each_with_index do |task, index|
-      status = task.completed ? "[X]" : "[ ]"
-      puts "#{index + 1}. #{status} #{task.description}"
-    end
-  end
-
-  def mark_task_completed(index)
-    task = @tasks[index]
-    task.mark_as_completed if task
-  end
-end
 
 class CLI
   def initialize
@@ -76,4 +42,6 @@ class CLI
   end
 end
 
-CLI.new.start
+if __FILE__ == $0
+  CLI.new.start
+end
